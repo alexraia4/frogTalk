@@ -1,23 +1,16 @@
-import './reset.css';
-import {useState} from 'react';
-import Axios from 'axios'
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import Login from './Login.js';
+import Profile from './Profile.js';
+import CreateAccount from './CreateAccount.js';
 
-function App() {
+const router = createBrowserRouter([
+  {path: "/", element: <Login/>},
+  {path: "/profile", element: <Profile/>},
+  {path: "/createaccount", element: <CreateAccount/>}
+]);
 
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-
-  const login = () => {
-    Axios.get('http://localhost:42069/derp')
-  }
-
+export default function App() {
   return (
-    <div className="App">
-      User Name: <input type="text" onChange={e =>{setUserName(e.target.value)}}/> <br/>
-      Password:  <input type="text" onChange={e =>{setPassword(e.target.value)}}/> <br/>
-      <div onClick={login}>Login</div>
-    </div>
+    <RouterProvider router={router} />
   );
 }
-
-export default App;

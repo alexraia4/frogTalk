@@ -9,7 +9,7 @@ module.exports = {
 
         let {userName, password} = req.body;
         let sql = `INSERT INTO accounts(id, userName, password) VALUES(1, "${userName}", "${password}");`;
-        swamp.exec(sql);
+        swamp.exec(sql);//
 
         sql = 'SELECT * FROM Accounts;'
         swamp.all(sql, [], (err, rows) => {

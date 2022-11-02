@@ -8,13 +8,20 @@ module.exports = {
         });
 
         let {userName, password} = req.body;
-        let sql = `INSERT INTO accounts(id, userName, password) VALUES(1, "${userName}", "${password}");`;
+        let sql = `INSERT INTO accounts(userName, password) VALUES("${userName}", "${password}");`;
         swamp.exec(sql);
 
         sql = 'SELECT * FROM Accounts;'
         swamp.all(sql, [], (err, rows) => {
             if (err) throw err;
             rows.forEach((row) => {console.log(row);});
+        });
+
+        swamp.close((err) => {
+            if (err)
+              console.log(err.message);
+            else
+              console.log("You're out of the swamp")
         });
         
         return res.status(201).send('NEW FROG YOOOOOOOO');
